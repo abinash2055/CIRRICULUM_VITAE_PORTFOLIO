@@ -1,77 +1,131 @@
 
 const heroSceneData = {
-    container: {
-        height: "h-[340px] md:h-[480px]",
+  camera: {
+    position: [0, 0, 8],
+    fov: 45,
+  },
+
+  galaxy: {
+    scale: 1.65,
+    rotationSpeed: {
+      x: 0.12,
+      y: 0.28,
     },
 
-    reveal: {
-        delay: 4,
-        duration: 7,
-        initialScale: 0.35,
-        initialY: 120,
+    particles: {
+      count: 1800,
+      radius: 1.35,
+      size: 0.025,
     },
 
-    camera: {
-        position: [0, 0, 5],
-        fov: 45,
+    rings: {
+      innerRadius: 1.65,
+      outerRadius: 1.9,
     },
+  },
 
-    lighting: {
-        ambient: {
-            intensity: 1.5,
+  stars: {
+    count: 1800,
+    radius: 12,
+    depth: 10,
+    factor: 4,
+    speed: 1.2,
+    saturation: 0.7,
+    fade: true,
+  },
+
+  sparkles: {
+    count: 180,
+    scale: 12,
+    size: 2.5,
+    speed: 0.5,
+  },
+
+  comets: {
+    count: 4,
+    speed: 0.7,
+    trailLength: 5,
+    trailWidth: 2,
+  },
+
+  lighting: {
+    ambient: 1.2,
+  },
+
+  themes: {
+    dark: {
+      background: "#050816",
+      particleColors: [
+        "#8B5CF6",
+        "#22D3EE",
+        "#60A5FA",
+        "#FFFFFF",
+      ],
+      coreColor: "#312E81",
+      coreEmissive: "#6366F1",
+      coreEmissiveIntensity: 1.8,
+      coreOpacity: 0.22,
+      ringColor: "#8B5CF6",
+      ringOpacity: 0.35,
+      sparkleColor: "#A78BFA",
+      starColor: "#FFFFFF",
+      cometColors: [
+        "#22D3EE",
+        "#8B5CF6",
+        "#60A5FA",
+        "#FFFFFF",
+      ],
+      lights: [
+        {
+          position: [4, 3, 4],
+          intensity: 35,
+          color: "#8B5CF6",
         },
-
-        lights: [
-            {
-                position: [3, 3, 3],
-                intensity: 30,
-                color: "#6366f1",
-            },
-            {
-                position: [-3, -2, 2],
-                intensity: 20,
-                color: "#22d3ee",
-            },
-        ],
+        {
+          position: [-4, -2, 3],
+          intensity: 25,
+          color: "#22D3EE",
+        },
+      ],
     },
 
-    floatingObject: {
-        scale: 1.4,
-
-        geometry: {
-            radius: 1,
-            detail: 2,
+    light: {
+      background: "#F8FAFF",
+      particleColors: [
+        "#6366F1",
+        "#0891B2",
+        "#3B82F6",
+        "#7C3AED",
+        "#FFFFFF",
+      ],
+      coreColor: "#C7D2FE",
+      coreEmissive: "#818CF8",
+      coreEmissiveIntensity: 0.65,
+      coreOpacity: 0.5,
+      ringColor: "#6366F1",
+      ringOpacity: 0.5,
+      sparkleColor: "#818CF8",
+      starColor: "#64748B",
+      cometColors: [
+        "#0891B2",
+        "#6366F1",
+        "#3B82F6",
+        "#7C3AED",
+      ],
+      lights: [
+        {
+          position: [4, 3, 4],
+          intensity: 22,
+          color: "#A5B4FC",
         },
-
-        movement: {
-            radiusX: 0.9,
-            radiusY: 0.55,
-            speedX: 1.5,
+        {
+          position: [-4, -2, 3],
+          intensity: 18,
+          color: "#67E8F9",
         },
-
-        material: {
-            color: "#7771ff",
-            emissive: "#4226b8",
-            emissiveIntensity: 0.8,
-            metalness: 0.8,
-            roughness: 0.15,
-            wireframe: true,
-        },
-
-        rotation: {
-            x: 3.5,
-            y: 5.0,
-            z: 3.0,
-        },
+      ],
     },
-
-    sparkles: {
-        count: 80,
-        scale: 5,
-        size: 2,
-        speed: 0.4,
-        color: "#a78bfa",
-    },
+  },
 };
 
 export default heroSceneData;

@@ -2,33 +2,47 @@
 const heroData = {
     availability: {
         text: "Available for Opportunities",
-        enabled: true,
+        status: "online",
     },
 
-    introduction: "Hello, I'm",
+    introduction: {
+        text: "HELLO, WORLD! I'M",
+        font: "font-mono",
+        color: "text-cyan-500",
+        size: "text-sm md:text-base",
+        weight: "font-semibold",
+        tracking: "tracking-[0.3em]",
+    },
 
-    name: "ABINASH NATH PANDEY",
+    name: {
+        text: "ABINASH NATH PANDEY",
+        font: "font-extrabold",
+        gradient: "bg-gradient-to-r from-orange-400 via-pink-500 to-purple-600",
+        size: "text-4xl sm:text-5xl lg:text-6xl",
+        weight: "font-extrabold",
+    },
 
     titles: [
         "Full Stack Developer",
         "Python AI/ML Developer",
+        "Creative Problem Solver",
     ],
 
     description:
-        "Building modern web experiences and intelligent solutions with code, creativity and innovation. Passionate about developing scalable applications and exploring emerging technologies.",
+        "I build modern web applications and intelligent solutions by combining creative frontend experiences, powerful backend technologies, and artificial intelligence.",
 
     buttons: [
         {
-            name: "Explore My Work",
+            label: "Explore My Work",
             href: "#projects",
-            icon: "arrow-right",
-            style: "primary",
+            type: "primary",
+            icon: "arrow",
         },
         {
-            name: "Let's Connect",
+            label: "Let's Connect",
             href: "#contact",
+            type: "secondary",
             icon: "send",
-            style: "secondary",
         },
     ],
 
@@ -45,55 +59,49 @@ const heroData = {
         },
         {
             name: "Facebook",
-            href: "https://www.facebook.com/abinash.nath.pandey",
+            href: "https://www.facebook.com/",
             icon: "facebook",
         },
         {
             name: "Instagram",
-            href: "https://www.instagram.com/abin.ash_056",
+            href: "https://www.instagram.com/",
             icon: "instagram",
         },
     ],
 
     visual: {
-        bottomLabel: "INNOVATION • TECHNOLOGY • CREATIVITY",
+        bottomLabel: "EXPLORING THE DIGITAL UNIVERSE",
 
         floatingLabels: [
             {
-                name: "Full Stack Developer",
-                position: "left",
-                color: "cyan",
-                animationDelay: 0,
-            },
-            {
-                name: "Python AI/ML",
-                position: "right",
-                color: "violet",
-                animationDelay: 0.5,
-            },
-            {
-                name: "React Developer",
+                text: "Full Stack Developer",
                 position: "top-left",
-                color: "blue",
-                animationDelay: 0.8,
+                delay: 0.2,
             },
             {
-                name: "Backend Developer",
+                text: "Python AI/ML",
                 position: "top-right",
-                color: "cyan",
-                animationDelay: 1.1,
+                delay: 0.5,
             },
             {
-                name: "Machine Learning",
+                text: "React Developer",
+                position: "left",
+                delay: 0.8,
+            },
+            {
+                text: "Backend Developer",
+                position: "right",
+                delay: 1.1,
+            },
+            {
+                text: "Machine Learning",
                 position: "bottom-left",
-                color: "violet",
-                animationDelay: 1.4,
+                delay: 1.4,
             },
             {
-                name: "AI Enthusiast",
+                text: "AI Enthusiast",
                 position: "bottom-right",
-                color: "blue",
-                animationDelay: 1.7,
+                delay: 1.7,
             },
         ],
     },

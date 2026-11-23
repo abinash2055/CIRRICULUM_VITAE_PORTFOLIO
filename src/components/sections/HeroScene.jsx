@@ -1,202 +1,293 @@
 
-import { Canvas, useFrame } from "@react-three/fiber";
-import { Sparkles } from "@react-three/drei";
-import { useRef, useState, useEffect } from "react";
-import { motion } from "framer-motion";
+import { useMemo, useRef } from "react";
+import {
+  Canvas,
+  useFrame,
+  useThree,
+} from "@react-three/fiber";
 
+import {
+  Sparkles,
+  Stars,
+  Trail,
+} from "@react-three/drei";
+
+import { useTheme } from "../../context/ThemeContext";
 import heroSceneData from "../../data/HeroScene";
 
-// ==========================================
-// FLOATING 3D OBJECT
-// ==========================================
+// Galaxy particles
+const GalaxyParticles = ({ colors }) => {
+  const pointsRef = useRef();
+  const { galaxy } = heroSceneData;
 
-const FloatingObject = () => {
-  const meshRef = useRef();
-  const startTime = useRef(null);
+  const { positions, particleColors } = useMemo(() => {
+    const positions = [];
+    const particleColors = [];
 
-  const { floatingObject, reveal } = heroSceneData;
+    for (let i = 0; i < galaxy.particles.count; i++) {
+      const phi = Math.acos(2 * Math.random() - 1);
+      const theta = Math.random() * Math.PI * 2;
 
-  useFrame((state, delta) => {
-    if (!meshRef.current) return;
+      const radius =
+        galaxy.particles.radius *
+        (0.65 + Math.random() * 0.35);
 
-    if (startTime.current === null) {
-      startTime.current = state.clock.elapsedTime;
+      positions.push(
+        radius * Math.sin(phi) * Math.cos(theta),
+        radius * Math.sin(phi) * Math.sin(theta),
+        radius * Math.cos(phi)
+      );
+
+      const color = colors[
+        Math.floor(Math.random() * colors.length)
+      ];
+
+      const hex = parseInt(color.replace("#", ""), 16);
+
+      particleColors.push(
+        ((hex >> 16) & 255) / 255,
+        ((hex >> 8) & 255) / 255,
+        (hex & 255) / 255
+      );
     }
 
-    const time = state.clock.elapsedTime - startTime.current;
+    return {
+      positions: new Float32Array(positions),
+      particleColors: new Float32Array(particleColors),
+    };
+  }, [colors, galaxy]);
 
-    const { movement, rotation } = floatingObject;
+  useFrame((_, delta) => {
+    if (pointsRef.current) {
+      pointsRef.current.rotation.y +=
+        delta * galaxy.rotationSpeed.y;
 
-    // 1. Continuous 3D rotation
-    meshRef.current.rotation.x += delta * rotation.x;
-    meshRef.current.rotation.y += delta * rotation.y;
-    meshRef.current.rotation.z += delta * rotation.z;
-
-    // 2. Calculate actual visible Canvas boundary
-    const camera = state.camera;
-
-    const cameraDistance = camera.position.z;
-
-    const aspect =
-      state.size.width / state.size.height;
-
-    const halfHeight =
-      Math.tan((camera.fov * Math.PI) / 360) *
-      cameraDistance;
-
-    const halfWidth = halfHeight * aspect;
-
-    // Account for the size of the 3D object
-    const objectRadius =
-      floatingObject.geometry.radius *
-      floatingObject.scale;
-
-    const margin = 0.02;
-
-    const width = Math.max(
-      halfWidth - objectRadius - margin,
-      0.1
-    );
-
-    const height = Math.max(
-      halfHeight - objectRadius - margin,
-      0.1
-    );
-
-    // 3. Elliptical (circular) orbit covering the full boundary
-    const angle = time * movement.speedX;
-
-    const x = Math.cos(angle) * width;
-    const y = Math.sin(angle) * height;
-
-    // Apply position
-    meshRef.current.position.set(x, y, 0);
-
-    // 4. Gradually increase net size
-    const progress = Math.min(
-      time / reveal.duration,
-      1
-    );
-
-    const smoothProgress =
-      progress * progress * (3 - 2 * progress);
-
-    meshRef.current.scale.setScalar(
-      floatingObject.scale * smoothProgress
-    );
+      pointsRef.current.rotation.x +=
+        delta * galaxy.rotationSpeed.x;
+    }
   });
 
   return (
-    <mesh ref={meshRef}>
-      <icosahedronGeometry
-        args={[
-          floatingObject.geometry.radius,
-          floatingObject.geometry.detail,
-        ]}
-      />
+    <points ref={pointsRef}>
+      <bufferGeometry>
+        <bufferAttribute
+          attach="attributes-position"
+          args={[positions, 3]}
+        />
 
-      <meshStandardMaterial
-        color={floatingObject.material.color}
-        emissive={floatingObject.material.emissive}
-        emissiveIntensity={floatingObject.material.emissiveIntensity}
-        metalness={floatingObject.material.metalness}
-        roughness={floatingObject.material.roughness}
-        wireframe={floatingObject.material.wireframe}
-        wireframeLinewidth={3}
+        <bufferAttribute
+          attach="attributes-color"
+          args={[particleColors, 3]}
+        />
+      </bufferGeometry>
+
+      <pointsMaterial
+        size={galaxy.particles.size}
+        vertexColors
+        transparent
+        opacity={0.95}
+        sizeAttenuation
+        depthWrite={false}
+      />
+    </points>
+  );
+};
+
+// Glowing galaxy core
+const GalaxyCore = ({ colors }) => {
+  const coreRef = useRef();
+
+  useFrame((_, delta) => {
+    if (coreRef.current) {
+      coreRef.current.rotation.y += delta * 0.2;
+      coreRef.current.rotation.x += delta * 0.1;
+    }
+  });
+
+  return (
+    <mesh ref={coreRef}>
+      <icosahedronGeometry args={[0.72, 2]} />
+
+      <meshPhysicalMaterial
+        color={colors.coreColor}
+        emissive={colors.coreEmissive}
+        emissiveIntensity={colors.coreEmissiveIntensity}
+        roughness={0.25}
+        metalness={0.8}
+        transparent
+        opacity={colors.coreOpacity}
+        wireframe
       />
     </mesh>
   );
 };
 
-// ==========================================
-// MAIN HERO SCENE
-// ==========================================
+// Galaxy orbital rings
+const GalaxyRings = ({ colors }) => {
+  const ringRef = useRef();
+  const { galaxy } = heroSceneData;
 
-const HeroScene = () => {
-  const [showScene, setShowScene] = useState(false);
-
-  const {
-    container,
-    camera,
-    lighting,
-    sparkles,
-    reveal,
-  } = heroSceneData;
-
-  // Delay 3D scene rendering
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setShowScene(true);
-    }, reveal.delay * 1000);
-
-    return () => clearTimeout(timer);
-  }, [reveal.delay]);
+  useFrame((_, delta) => {
+    if (ringRef.current) {
+      ringRef.current.rotation.z += delta * 0.12;
+      ringRef.current.rotation.x = 1.1;
+    }
+  });
 
   return (
-    <div className={`${container.height} relative w-full`}>
+    <group ref={ringRef}>
+      <mesh>
+        <torusGeometry
+          args={[galaxy.rings.innerRadius, 0.008, 8, 120]}
+        />
 
-      {/* Loading Placeholder */}
-      {!showScene && (
-        <div className="absolute inset-0 flex items-center justify-center">
-          <div className="h-16 w-16 animate-pulse rounded-full bg-violet-500/10 blur-xl" />
-        </div>
-      )}
+        <meshBasicMaterial
+          color={colors.ringColor}
+          transparent
+          opacity={colors.ringOpacity}
+        />
+      </mesh>
 
-      {/* Animated 3D Scene */}
-      {showScene && (
-        <motion.div
-          className="h-full w-full"
-          initial={{
-            opacity: 0,
-            scale: reveal.initialScale,
-            y: reveal.initialY,
-          }}
-          animate={{
-            opacity: 1,
-            scale: 1,
-            y: 0,
-          }}
-          transition={{
-            duration: reveal.duration,
-            ease: [0.22, 1, 0.36, 1],
-          }}
-        >
-          <Canvas
-            camera={camera}
-            style={{
-              width: "100%",
-              height: "100%",
-            }}
-          >
-            {/* Ambient Lighting */}
-            <ambientLight
-              intensity={lighting.ambient.intensity}
-            />
+      <mesh rotation={[0.4, 0.5, 0.8]}>
+        <torusGeometry
+          args={[galaxy.rings.outerRadius, 0.006, 8, 120]}
+        />
 
-            {/* Point Lights */}
-            {lighting.lights.map((light, index) => (
-              <pointLight
-                key={index}
-                position={light.position}
-                intensity={light.intensity}
-                color={light.color}
-              />
-            ))}
+        <meshBasicMaterial
+          color={colors.cometColors[0]}
+          transparent
+          opacity={0.3}
+        />
+      </mesh>
+    </group>
+  );
+};
 
-            {/* Main 3D Object */}
-            <FloatingObject />
+// Galaxy positioned on the right
+const Galaxy = ({ colors }) => {
+  const { viewport } = useThree();
 
-            {/* Floating Particles */}
-            <Sparkles
-              count={sparkles.count}
-              scale={sparkles.scale}
-              size={sparkles.size}
-              speed={sparkles.speed}
-              color={sparkles.color}
-            />
-          </Canvas>
-        </motion.div>
-      )}
+  const galaxyX = Math.min(viewport.width * 0.23, 2.4);
+
+  return (
+    <group
+      position={[galaxyX, 0, 0]}
+      scale={heroSceneData.galaxy.scale}
+    >
+      <GalaxyParticles colors={colors.particleColors} />
+      <GalaxyCore colors={colors} />
+      <GalaxyRings colors={colors} />
+    </group>
+  );
+};
+
+// Shooting comets
+const Comet = ({ index, colors }) => {
+  const cometRef = useRef();
+  const { comets } = heroSceneData;
+
+  const color = colors.cometColors[
+    index % colors.cometColors.length
+  ];
+
+  useFrame((state) => {
+    if (!cometRef.current) return;
+
+    const time = state.clock.elapsedTime * comets.speed;
+    const phase = index * 2.1;
+    const progress = (time + phase) % 8;
+
+    cometRef.current.position.set(
+      5.5 - progress * 1.35,
+      3.2 - progress * 0.85,
+      -1.5 + index * 0.35
+    );
+  });
+
+  return (
+    <Trail
+      width={comets.trailWidth}
+      length={comets.trailLength}
+      color={color}
+      attenuation={(t) => t * t}
+    >
+      <mesh ref={cometRef}>
+        <sphereGeometry args={[0.035, 12, 12]} />
+        <meshBasicMaterial color={color} />
+      </mesh>
+    </Trail>
+  );
+};
+
+// Scene lighting
+const SceneLights = ({ colors }) => {
+  return (
+    <>
+      <ambientLight intensity={heroSceneData.lighting.ambient} />
+
+      {colors.lights.map((light, index) => (
+        <pointLight
+          key={index}
+          position={light.position}
+          intensity={light.intensity}
+          color={light.color}
+        />
+      ))}
+    </>
+  );
+};
+
+// Main 3D scene
+const HeroScene = () => {
+  const { theme } = useTheme();
+
+  const colors = heroSceneData.themes[theme] ||
+    heroSceneData.themes.dark;
+
+  const { camera, stars, sparkles, comets } = heroSceneData;
+
+  return (
+    <div className="absolute inset-0 h-full w-full">
+      <Canvas
+        camera={camera}
+        dpr={[1, 1.7]}
+        gl={{
+          alpha: true,
+          antialias: true,
+          powerPreference: "high-performance",
+        }}
+      >
+        <SceneLights colors={colors} />
+
+        <Stars
+          radius={stars.radius}
+          depth={stars.depth}
+          count={stars.count}
+          factor={stars.factor}
+          saturation={stars.saturation}
+          fade={stars.fade}
+          speed={stars.speed}
+          color={colors.starColor}
+        />
+
+        <Sparkles
+          count={sparkles.count}
+          scale={sparkles.scale}
+          size={sparkles.size}
+          speed={sparkles.speed}
+          color={colors.sparkleColor}
+        />
+
+        <Galaxy colors={colors} />
+
+        {Array.from({ length: comets.count }).map((_, index) => (
+          <Comet
+            key={index}
+            index={index}
+            colors={colors}
+          />
+        ))}
+      </Canvas>
     </div>
   );
 };
