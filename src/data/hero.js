@@ -6,7 +6,7 @@ const heroData = {
     },
 
     introduction: {
-        text: "HELLO, WORLD! I'M",
+        text: "HELLO, I'M",
         font: "font-mono",
         color: "text-cyan-500",
         size: "text-sm md:text-base",
