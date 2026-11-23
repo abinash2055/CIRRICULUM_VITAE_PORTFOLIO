@@ -1,21 +1,49 @@
-import React from 'react'
+import { useState, useCallback } from "react";
 
-const App = () => {
+import { ThemeProvider } from "./context/ThemeContext";
+
+import CustomCursor from "./components/layout/CustomCursor";
+
+import LoadingScreen from "./components/layout/LoadingScreen";
+import Navbar from "./components/layout/Navbar";
+
+import Hero from "./components/sections/Hero";
+
+const Portfolio = () => {
+  const [loading, setLoading] = useState(true);
+
+  const handleLoadingComplete = useCallback(() => {
+    setLoading(false);
+  }, []);
+
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-black text-white">
-      <h1 className="text-5xl font-bold text-blue-500">
-        Welcome to My Portfolio
-      </h1>
+    <>
+      {loading && (
+        <LoadingScreen onComplete={handleLoadingComplete} />
+      )}
 
-      <p className="mt-4 text-lg text-gray-400">
-        Full Stack Developer | Python AI/ML Developer
-      </p>
+      <div className="min-h-screen overflow-x-hidden bg-[#f8f9ff] text-slate-900 transition-colors duration-500 dark:bg-[#050816] dark:text-white">
 
-      <button className="mt-6 rounded-lg bg-blue-600 px-6 py-3 hover:bg-blue-700 transition">
-        Explore My Work
-      </button>
-    </div>
-  )
+        {/* Custom Cursor */}
+        <CustomCursor />
+
+        <Navbar />
+
+        <main>
+          <Hero />
+        </main>
+
+      </div>
+    </>
+  );
+};
+
+function App() {
+  return (
+    <ThemeProvider>
+      <Portfolio />
+    </ThemeProvider>
+  );
 }
 
-export default App
+export default App;

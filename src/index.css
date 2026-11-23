@@ -1,4 +1,3 @@
-
 @import "tailwindcss";
 
 @custom-variant dark (&:where(.dark, .dark *));
@@ -53,12 +52,10 @@ a {
 /* Background effects */
 
 .gradient-text {
-  background: linear-gradient(
-    90deg,
-    #22d3ee,
-    #6366f1,
-    #c084fc
-  );
+  background: linear-gradient(90deg,
+      #22d3ee,
+      #6366f1,
+      #c084fc);
   background-clip: text;
   -webkit-background-clip: text;
   color: transparent;
@@ -96,6 +93,7 @@ a {
 /* Reduced motion support */
 
 @media (prefers-reduced-motion: reduce) {
+
   *,
   *::before,
   *::after {
@@ -103,4 +101,132 @@ a {
     animation-duration: 0.01ms !important;
     transition-duration: 0.01ms !important;
   }
+}
+
+
+
+/* ========================================
+   3D LIQUID GLASS CUSTOM CURSOR
+======================================== */
+
+/* Hide default cursor on desktop */
+@media (pointer: fine) {
+
+  body,
+  body * {
+    cursor: none !important;
+  }
+}
+
+/* Main cursor */
+.liquid-cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 99999;
+  width: 38px;
+  height: 38px;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  will-change: transform;
+}
+
+/* Outer neon glow */
+.liquid-cursor-glow {
+  position: absolute;
+  inset: -12px;
+  border-radius: 50%;
+  background: radial-gradient(circle,
+      rgba(139, 92, 246, 0.35) 0%,
+      rgba(59, 130, 246, 0.18) 45%,
+      transparent 75%);
+  filter: blur(8px);
+  animation: liquidGlow 3s ease-in-out infinite alternate;
+}
+
+/* Main liquid glass orb */
+.liquid-cursor-orb {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  border-radius: 50%;
+
+  background: linear-gradient(135deg,
+      rgba(196, 181, 253, 0.55),
+      rgba(96, 165, 250, 0.35),
+      rgba(34, 211, 238, 0.45));
+
+  border: 1px solid rgba(255, 255, 255, 0.65);
+
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+
+  box-shadow:
+    inset 3px 3px 7px rgba(255, 255, 255, 0.65),
+    inset -3px -3px 8px rgba(59, 130, 246, 0.25),
+    0 0 15px rgba(139, 92, 246, 0.35),
+    0 0 30px rgba(59, 130, 246, 0.2);
+}
+
+/* Glass reflection */
+.liquid-cursor-highlight {
+  position: absolute;
+  top: 5px;
+  left: 7px;
+  width: 17px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.85);
+  filter: blur(3px);
+  transform: rotate(-35deg);
+}
+
+/* Inner liquid effect */
+.liquid-cursor-inner {
+  position: absolute;
+  right: 5px;
+  bottom: 5px;
+  width: 17px;
+  height: 17px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%,
+      rgba(255, 255, 255, 0.8),
+      rgba(139, 92, 246, 0.4),
+      rgba(6, 182, 212, 0.3));
+  filter: blur(2px);
+}
+
+/* Animated glow */
+@keyframes liquidGlow {
+  from {
+    opacity: 0.65;
+    transform: scale(0.9);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1.15);
+  }
+}
+
+/* Light theme */
+html:not(.dark) .liquid-cursor-orb {
+  background: linear-gradient(135deg,
+      rgba(167, 139, 250, 0.55),
+      rgba(96, 165, 250, 0.4),
+      rgba(34, 211, 238, 0.5));
+
+  border-color: rgba(139, 92, 246, 0.5);
+}
+
+/* Dark theme */
+html.dark .liquid-cursor-orb {
+  background: linear-gradient(135deg,
+      rgba(139, 92, 246, 0.5),
+      rgba(59, 130, 246, 0.4),
+      rgba(6, 182, 212, 0.45));
+
+  border-color: rgba(255, 255, 255, 0.55);
 }
