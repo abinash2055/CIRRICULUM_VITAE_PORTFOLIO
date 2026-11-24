@@ -1,13 +1,14 @@
 import { useState, useCallback } from "react";
 
 import { ThemeProvider } from "./context/ThemeContext";
-
 import CustomCursor from "./components/layout/CustomCursor";
 
 import LoadingScreen from "./components/layout/LoadingScreen";
 import Navbar from "./components/layout/Navbar";
 
-import Hero from "./components/sections/Hero";
+import Hero from "./components/sections/hero/Hero";
+import AboutMe from "./components/sections/about/AboutMe";
+import Skills from "./components/sections/skills/Skills"
 
 const Portfolio = () => {
   const [loading, setLoading] = useState(true);
@@ -31,6 +32,8 @@ const Portfolio = () => {
 
         <main>
           <Hero />
+          <AboutMe />
+          <Skills />
         </main>
 
       </div>

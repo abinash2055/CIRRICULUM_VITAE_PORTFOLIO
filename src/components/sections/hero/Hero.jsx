@@ -16,9 +16,9 @@ import {
   FaInstagram,
 } from "react-icons/fa";
 
-import { useTheme } from "../../context/ThemeContext";
+import { useTheme } from "../../../context/ThemeContext";
 import HeroScene from "./HeroScene";
-import heroData from "../../data/hero";
+import heroData from "../../../data/hero";
 
 const socialIcons = {
   github: FaGithub,

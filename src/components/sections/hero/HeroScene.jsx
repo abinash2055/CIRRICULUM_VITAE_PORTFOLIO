@@ -12,8 +12,8 @@ import {
   Trail,
 } from "@react-three/drei";
 
-import { useTheme } from "../../context/ThemeContext";
-import heroSceneData from "../../data/HeroScene";
+import { useTheme } from "../../../context/ThemeContext";
+import heroSceneData from "../../../data/HeroScene";
 
 // Galaxy particles
 const GalaxyParticles = ({ colors }) => {
