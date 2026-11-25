@@ -4,6 +4,8 @@ import { ThemeProvider } from "./context/ThemeContext";
 import CustomCursor from "./components/layout/CustomCursor";
 
 import ToolsMarquee from "./components/pageDivision/ToolsMarquee"
+import ExperienceEducationDivider from "./components/pageDivision/experienceEducation/ExperienceEducationDivider";
+
 import LoadingScreen from "./components/layout/LoadingScreen";
 import ScrollNavigation from "./components/layout/ScrollNavigation";
 
@@ -13,6 +15,7 @@ import Hero from "./components/sections/hero/Hero";
 import AboutMe from "./components/sections/about/AboutMe";
 import Skills from "./components/sections/skills/Skills"
 import Experience from "./components/sections/experience/Experience";
+import Education from "./components/sections/education/Education";
 
 
 const Portfolio = () => {
@@ -41,6 +44,8 @@ const Portfolio = () => {
           <Skills />
           <ToolsMarquee />
           <Experience />
+          <ExperienceEducationDivider />
+          <Education />
         </main>
 
       </div>

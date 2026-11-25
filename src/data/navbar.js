@@ -10,7 +10,7 @@ const navbarData = {
 
     // Name and title
     title: {
-        name: "ABINASH",
+        name: "ABINASH NATH PANDEY",
         designation: "Full Stack Developer",
         subtitle: "Python AI/ML Engineer",
     },
