@@ -10,19 +10,19 @@ const navbarData = {
 
     // Name and title
     title: {
-        name: "ABINASH NATH PANDEY",
+        name: "ABINASH",
         designation: "Full Stack Developer",
-        subtitle: "Python AI/ML Developer",
+        subtitle: "Python AI/ML Engineer",
     },
 
     // Navigation links
     navLinks: [
         { name: "HOME", href: "#home", icon: "Home" },
         { name: "ABOUT", href: "#about", icon: "User" },
-        { name: "EDUCATION", href: "#education", icon: "GraduationCap" },
         { name: "SKILLS", href: "#skills", icon: "Code" },
-        { name: "EXPERIENCE", href: "#experience", icon: "BriefcaseBusiness" },
         { name: "PROJECTS", href: "#projects", icon: "FolderKanban" },
+        { name: "EXPERIENCE", href: "#experience", icon: "BriefcaseBusiness" },
+        { name: "EDUCATION", href: "#education", icon: "GraduationCap" },
         { name: "CONTACT", href: "#contact", icon: "Mail" },
     ],
 

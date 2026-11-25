@@ -3,12 +3,17 @@ import { useState, useCallback } from "react";
 import { ThemeProvider } from "./context/ThemeContext";
 import CustomCursor from "./components/layout/CustomCursor";
 
+import ToolsMarquee from "./components/pageDivision/ToolsMarquee"
 import LoadingScreen from "./components/layout/LoadingScreen";
-import Navbar from "./components/layout/Navbar";
+import ScrollNavigation from "./components/layout/ScrollNavigation";
 
+
+import Navbar from "./components/layout/Navbar";
 import Hero from "./components/sections/hero/Hero";
 import AboutMe from "./components/sections/about/AboutMe";
 import Skills from "./components/sections/skills/Skills"
+import Experience from "./components/sections/experience/Experience";
+
 
 const Portfolio = () => {
   const [loading, setLoading] = useState(true);
@@ -25,15 +30,17 @@ const Portfolio = () => {
 
       <div className="min-h-screen overflow-x-hidden bg-[#f8f9ff] text-slate-900 transition-colors duration-500 dark:bg-[#050816] dark:text-white">
 
-        {/* Custom Cursor */}
         <CustomCursor />
 
         <Navbar />
+        <ScrollNavigation />
 
         <main>
           <Hero />
           <AboutMe />
           <Skills />
+          <ToolsMarquee />
+          <Experience />
         </main>
 
       </div>
