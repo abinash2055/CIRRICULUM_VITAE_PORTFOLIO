@@ -17,6 +17,7 @@ import AboutMe from "./components/sections/about/AboutMe";
 import Skills from "./components/sections/skills/Skills"
 import Experience from "./components/sections/experience/Experience";
 import Education from "./components/sections/education/Education";
+import Contact from "./components/contact/Contact";
 
 
 const Portfolio = () => {
@@ -48,6 +49,7 @@ const Portfolio = () => {
           <ExperienceEducationDivider />
           <Education />
           <EducationContactDivider />
+          <Contact />
         </main>
 
       </div>
