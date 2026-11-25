@@ -5,6 +5,7 @@ import CustomCursor from "./components/layout/CustomCursor";
 
 import ToolsMarquee from "./components/pageDivision/ToolsMarquee"
 import ExperienceEducationDivider from "./components/pageDivision/experienceEducation/ExperienceEducationDivider";
+import EducationContactDivider from "./components/pageDivision/educationContact/EducationContactDivider";
 
 import LoadingScreen from "./components/layout/LoadingScreen";
 import ScrollNavigation from "./components/layout/ScrollNavigation";
@@ -46,6 +47,7 @@ const Portfolio = () => {
           <Experience />
           <ExperienceEducationDivider />
           <Education />
+          <EducationContactDivider />
         </main>
 
       </div>

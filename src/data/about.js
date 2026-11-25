@@ -26,7 +26,7 @@ const aboutData = {
 
   technologies: [
     {
-      name: "Full Stack",
+      name: "Full Stack Development",
       detail: "Modern web experiences",
       icon: "code",
       color: "#A855F7",

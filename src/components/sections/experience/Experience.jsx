@@ -84,8 +84,14 @@ const Experience = () => {
             </span>
           </div>
 
-          <h2 className="text-4xl font-black tracking-tight sm:text-5xl lg:text-6xl">
-            {heading.title || "Experience & Journey"}
+          <h2 className="text-4xl font-extrabold tracking-tight sm:text-5xl lg:text-6xl">
+            {(heading.title || "Experience & Journey").split(" ")[0]}{" "}
+            <span className="bg-gradient-to-r from-violet-500 via-cyan-400 to-blue-500 bg-clip-text text-transparent">
+              {(heading.title || "Experience & Journey")
+                .split(" ")
+                .slice(1)
+                .join(" ")}
+            </span>
           </h2>
 
           <p

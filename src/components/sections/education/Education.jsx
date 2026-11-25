@@ -89,10 +89,15 @@ const Education = () => {
             </span>
           </div>
 
-          <h2 className="text-4xl font-black tracking-tight sm:text-5xl lg:text-6xl">
-            {heading.title || "Education & Qualifications"}
+          <h2 className="text-4xl font-extrabold tracking-tight sm:text-5xl lg:text-6xl">
+            {(heading.title || "Education & Qualifications").split(" ")[0]}{" "}
+            <span className="bg-gradient-to-r from-violet-500 via-cyan-400 to-blue-500 bg-clip-text text-transparent">
+              {(heading.title || "Education & Qualifications")
+                .split(" ")
+                .slice(1)
+                .join(" ")}
+            </span>
           </h2>
-
           <p
             className={`mx-auto mt-6 max-w-2xl text-sm leading-8 sm:text-base ${isDark ? "text-slate-400" : "text-slate-600"
               }`}
@@ -106,8 +111,8 @@ const Education = () => {
         {educations.length === 0 ? (
           <div
             className={`rounded-3xl border border-dashed p-12 text-center backdrop-blur-xl ${isDark
-                ? "border-violet-500/40 bg-slate-900/40"
-                : "border-violet-300 bg-white/60"
+              ? "border-violet-500/40 bg-slate-900/40"
+              : "border-violet-300 bg-white/60"
               }`}
           >
             <GraduationCap className="mx-auto mb-4 h-12 w-12 text-violet-500" />
@@ -175,16 +180,16 @@ const Education = () => {
                     {/* Education Card Wrapper */}
                     <div
                       className={`min-w-0 w-full pl-14 ${isLeft
-                          ? "md:order-1 md:pl-0 md:pr-8"
-                          : "md:order-2 md:pl-8"
+                        ? "md:order-1 md:pl-0 md:pr-8"
+                        : "md:order-2 md:pl-8"
                         }`}
                     >
                       <motion.article
                         whileHover={{ y: -7 }}
                         transition={{ duration: 0.3 }}
                         className={`group relative overflow-hidden rounded-3xl border p-6 shadow-2xl backdrop-blur-2xl sm:p-8 ${isDark
-                            ? "border-white/10 bg-slate-900/70 shadow-black/20"
-                            : "border-slate-200 bg-white/90 shadow-slate-300/30"
+                          ? "border-white/10 bg-slate-900/70 shadow-black/20"
+                          : "border-slate-200 bg-white/90 shadow-slate-300/30"
                           }`}
                       >
                         {/* Card Glow */}
@@ -199,8 +204,8 @@ const Education = () => {
                           {/* Institution Logo */}
                           <div
                             className={`relative flex h-16 w-16 shrink-0 items-center justify-center overflow-hidden rounded-2xl border ${isDark
-                                ? "border-white/10 bg-white/10"
-                                : "border-slate-200 bg-slate-100"
+                              ? "border-white/10 bg-white/10"
+                              : "border-slate-200 bg-slate-100"
                               }`}
                           >
                             <GraduationCap className="absolute h-8 w-8 text-violet-500" />
@@ -242,8 +247,8 @@ const Education = () => {
                           {education.period && (
                             <div
                               className={`flex items-center gap-2 rounded-xl border px-3 py-2 text-xs ${isDark
-                                  ? "border-white/10 bg-white/5 text-slate-300"
-                                  : "border-slate-200 bg-slate-50 text-slate-600"
+                                ? "border-white/10 bg-white/5 text-slate-300"
+                                : "border-slate-200 bg-slate-50 text-slate-600"
                                 }`}
                             >
                               <CalendarDays className="h-4 w-4 text-cyan-500" />
@@ -255,8 +260,8 @@ const Education = () => {
                           {education.institutionLocation && (
                             <div
                               className={`flex items-center gap-2 rounded-xl border px-3 py-2 text-xs ${isDark
-                                  ? "border-white/10 bg-white/5 text-slate-300"
-                                  : "border-slate-200 bg-slate-50 text-slate-600"
+                                ? "border-white/10 bg-white/5 text-slate-300"
+                                : "border-slate-200 bg-slate-50 text-slate-600"
                                 }`}
                             >
                               <MapPin className="h-4 w-4 text-violet-500" />
@@ -268,8 +273,8 @@ const Education = () => {
                           {education.status && (
                             <span
                               className={`rounded-xl border px-3 py-2 text-xs ${isDark
-                                  ? "border-white/10 bg-white/5 text-slate-300"
-                                  : "border-slate-200 bg-slate-50 text-slate-600"
+                                ? "border-white/10 bg-white/5 text-slate-300"
+                                : "border-slate-200 bg-slate-50 text-slate-600"
                                 }`}
                             >
                               {education.status}
@@ -303,8 +308,8 @@ const Education = () => {
 
                             <p
                               className={`text-sm leading-7 ${isDark
-                                  ? "text-slate-400"
-                                  : "text-slate-600"
+                                ? "text-slate-400"
+                                : "text-slate-600"
                                 }`}
                             >
                               {education.description}
@@ -327,8 +332,8 @@ const Education = () => {
                                     key={subjectIndex}
                                     whileHover={{ y: -4, scale: 1.04 }}
                                     className={`rounded-xl border px-3 py-2 text-xs font-medium ${isDark
-                                        ? "border-white/10 bg-white/5 text-slate-300 hover:border-cyan-400/50 hover:bg-cyan-500/10"
-                                        : "border-slate-200 bg-slate-50 text-slate-600 hover:border-cyan-300 hover:bg-cyan-50"
+                                      ? "border-white/10 bg-white/5 text-slate-300 hover:border-cyan-400/50 hover:bg-cyan-500/10"
+                                      : "border-slate-200 bg-slate-50 text-slate-600 hover:border-cyan-300 hover:bg-cyan-50"
                                       }`}
                                   >
                                     {subject}
@@ -358,8 +363,8 @@ const Education = () => {
 
                                     <p
                                       className={`text-sm leading-6 ${isDark
-                                          ? "text-slate-400"
-                                          : "text-slate-600"
+                                        ? "text-slate-400"
+                                        : "text-slate-600"
                                         }`}
                                     >
                                       {achievement}

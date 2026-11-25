@@ -202,8 +202,8 @@ const Skills = () => {
                         }}
                         whileHover={{ y: -7, scale: 1.035 }}
                         className={`group/skill relative flex min-h-[135px] flex-col items-center justify-center gap-4 overflow-hidden rounded-2xl border p-4 backdrop-blur-xl transition-all duration-500 ${isDark
-                            ? "border-white/10 bg-gradient-to-br from-white/[0.09] via-[#111A35]/70 to-cyan-400/[0.04] shadow-[inset_0_1px_1px_rgba(255,255,255,0.12),0_8px_30px_rgba(0,0,0,0.25)] hover:border-cyan-300/40 hover:shadow-[inset_0_1px_1px_rgba(255,255,255,0.2),0_0_25px_rgba(34,211,238,0.16)]"
-                            : "border-white/80 bg-gradient-to-br from-white/95 via-white/75 to-violet-100/60 shadow-[inset_0_1px_2px_rgba(255,255,255,0.95),0_8px_30px_rgba(100,116,139,0.10)] hover:border-violet-300 hover:shadow-[inset_0_1px_2px_rgba(255,255,255,1),0_0_25px_rgba(139,92,246,0.15)]"
+                          ? "border-white/10 bg-gradient-to-br from-white/[0.09] via-[#111A35]/70 to-cyan-400/[0.04] shadow-[inset_0_1px_1px_rgba(255,255,255,0.12),0_8px_30px_rgba(0,0,0,0.25)] hover:border-cyan-300/40 hover:shadow-[inset_0_1px_1px_rgba(255,255,255,0.2),0_0_25px_rgba(34,211,238,0.16)]"
+                          : "border-white/80 bg-gradient-to-br from-white/95 via-white/75 to-violet-100/60 shadow-[inset_0_1px_2px_rgba(255,255,255,0.95),0_8px_30px_rgba(100,116,139,0.10)] hover:border-violet-300 hover:shadow-[inset_0_1px_2px_rgba(255,255,255,1),0_0_25px_rgba(139,92,246,0.15)]"
                           }`}
 
                       >
