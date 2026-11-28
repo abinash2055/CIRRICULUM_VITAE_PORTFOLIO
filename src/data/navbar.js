@@ -23,6 +23,7 @@ const navbarData = {
         { name: "PROJECTS", href: "#projects", icon: "FolderKanban" },
         { name: "EXPERIENCE", href: "#experience", icon: "BriefcaseBusiness" },
         { name: "EDUCATION", href: "#education", icon: "GraduationCap" },
+        { name: "CERTIFICATIONS", href: "#certification", icon: "Award" },
         { name: "CONTACT", href: "#contact", icon: "Mail" },
     ],
 

@@ -209,7 +209,7 @@ function GalleryScene() {
     );
 }
 
-export default function EducationContactScene3D() {
+export default function EducationCertificateScene3D() {
     return (
         <Canvas
             camera={{ position: [0, 0, 19], fov: 45 }}

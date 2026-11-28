@@ -4,8 +4,9 @@ import { ThemeProvider } from "./context/ThemeContext";
 import CustomCursor from "./components/layout/CustomCursor";
 
 import ToolsMarquee from "./components/pageDivision/ToolsMarquee"
+
 import ExperienceEducationDivider from "./components/pageDivision/experienceEducation/ExperienceEducationDivider";
-import EducationContactDivider from "./components/pageDivision/educationContact/EducationContactDivider";
+import EducationCertificateDivider from "./components/pageDivision/educationCertificate/EducationCertificateDivider";
 
 import LoadingScreen from "./components/layout/LoadingScreen";
 import ScrollNavigation from "./components/layout/ScrollNavigation";
@@ -17,6 +18,7 @@ import AboutMe from "./components/sections/about/AboutMe";
 import Skills from "./components/sections/skills/Skills"
 import Experience from "./components/sections/experience/Experience";
 import Education from "./components/sections/education/Education";
+import Certification from "./components/sections/certifications/Certifications"
 import Contact from "./components/contact/Contact";
 
 
@@ -48,7 +50,8 @@ const Portfolio = () => {
           <Experience />
           <ExperienceEducationDivider />
           <Education />
-          <EducationContactDivider />
+          <EducationCertificateDivider />
+          <Certification />
           <Contact />
         </main>
 

@@ -1,9 +1,9 @@
 
 import { motion } from "framer-motion";
 import { useTheme } from "../../../context/ThemeContext";
-import EducationContactScene3D from "./EducationContactScene3D";
+import EducationCertificateScene3D from "./EducationCertificateScene3D";
 
-export default function EducationContactDivider() {
+export default function EducationCertificateDivider() {
     const { theme } = useTheme();
     const isDark = theme === "dark";
 
@@ -51,7 +51,7 @@ export default function EducationContactDivider() {
                 transition={{ duration: 1.2 }}
                 className="relative z-10 mx-auto h-[260px] w-full max-w-[1900px] sm:h-[330px] lg:h-[400px]"
             >
-                <EducationContactScene3D />
+                <EducationCertificateScene3D />
 
                 {/* Top fade */}
                 <div
@@ -86,12 +86,12 @@ export default function EducationContactDivider() {
 
                         <div
                             className={`mx-auto mt-5 inline-flex w-fit items-center justify-center rounded-full border px-5 py-2 backdrop-blur-xl ${isDark
-                                    ? "border-white/10 bg-white/[0.04] text-slate-300 shadow-[0_0_30px_rgba(139,92,246,0.12)]"
-                                    : "border-slate-300/60 bg-white/60 text-slate-600 shadow-[0_0_30px_rgba(99,102,241,0.10)]"
+                                ? "border-white/10 bg-white/[0.04] text-slate-300 shadow-[0_0_30px_rgba(139,92,246,0.12)]"
+                                : "border-slate-300/60 bg-white/60 text-slate-600 shadow-[0_0_30px_rgba(99,102,241,0.10)]"
                                 }`}
                         >
                             <span className="text-[10px] font-semibold uppercase tracking-[0.3em] sm:text-xs">
-                                From Education to Connection
+                                From Education to Certifications
                             </span>
                         </div>
                     </motion.div>
