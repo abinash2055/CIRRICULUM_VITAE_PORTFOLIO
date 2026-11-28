@@ -33,7 +33,7 @@ export default function Certifications() {
     return (
         <section
             id="certifications"
-            className={`relative isolate w-full scroll-mt-24 overflow-hidden py-24 transition-colors duration-700 md:py-32 ${isDark ? "bg-[#050816]" : "bg-[#F8FAFF]"
+            className={`relative isolate w-full scroll-mt-24 overflow-hidden transition-colors duration-700 md:py-32 ${isDark ? "bg-[#050816]" : "bg-[#F8FAFF]"
                 }`}
         >
 

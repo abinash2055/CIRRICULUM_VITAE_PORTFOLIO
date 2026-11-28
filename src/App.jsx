@@ -7,6 +7,7 @@ import ToolsMarquee from "./components/pageDivision/ToolsMarquee"
 
 import ExperienceEducationDivider from "./components/pageDivision/experienceEducation/ExperienceEducationDivider";
 import EducationCertificateDivider from "./components/pageDivision/educationCertificate/EducationCertificateDivider";
+import CertificationContactDivider from "./components/pageDivision/certificateContact/CertificationContactDivider"
 
 import LoadingScreen from "./components/layout/LoadingScreen";
 import ScrollNavigation from "./components/layout/ScrollNavigation";
@@ -52,6 +53,7 @@ const Portfolio = () => {
           <Education />
           <EducationCertificateDivider />
           <Certification />
+          <CertificationContactDivider />
           <Contact />
         </main>
 
